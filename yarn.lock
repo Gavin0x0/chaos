@@ -1315,6 +1315,14 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
+"@react-three/cannon@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.npmjs.org/@react-three/cannon/-/cannon-4.6.1.tgz#0b7e5eb17d8cd2385b12c9d51fb73b84631f3a7d"
+  integrity sha512-T6sSUhwhu+LzcT99w6hT/byb02xoWwWoT3wVc1dUNe1GQFq4huWwmXaTsa3+B5l2JJbuOaG5TrSp+MpswgYF4A==
+  dependencies:
+    cannon-es "^0.18.0"
+    cannon-es-debugger "^1.0.0"
+
 "@react-three/fiber@^7.0.25":
   version "7.0.25"
   resolved "https://registry.npmjs.org/@react-three/fiber/-/fiber-7.0.25.tgz#a8f6b57d29f2ac42ed7354e1fc0375f83d2e8cd8"
@@ -2680,6 +2688,16 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001286, caniuse-lite@^1.0.30001297, can
   version "1.0.30001300"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001300.tgz#11ab6c57d3eb6f964cba950401fd00a146786468"
   integrity sha512-cVjiJHWGcNlJi8TZVKNMnvMid3Z3TTdDHmLDzlOdIiZq138Exvo0G+G0wTdVYolxKb4AYwC+38pxodiInVtJSA==
+
+cannon-es-debugger@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/cannon-es-debugger/-/cannon-es-debugger-1.0.0.tgz#28c6679b30dcf608e978225239f447a8fe55ccb4"
+  integrity sha512-sE9lDOBAYFKlh+0w+cvWKwUhJef8HYnUSVPWPL0jD15MAuVRQKno4QYZSGxgOoJkMR3mQqxL4bxys2b3RSWH8g==
+
+cannon-es@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.npmjs.org/cannon-es/-/cannon-es-0.18.0.tgz#ae831ff9df2352d5faabb269c11ea0f10bc35c7e"
+  integrity sha512-GiQ1bd0etZsMVSnUhNc+p+FEh0R/cULpp8uRSAhEK4Kax+y/31Au03m6h1h1xdDivAMnFg8YDwevHgzLynOHlw==
 
 case-sensitive-paths-webpack-plugin@^2.4.0:
   version "2.4.0"

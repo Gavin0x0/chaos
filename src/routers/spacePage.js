@@ -1,41 +1,28 @@
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import '../css/spacePage.css';
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/cannon";
+import { Ground } from "../components/Ground";
+import { RotatingCube } from "../components/RotatingCube";
+import "../css/spacePage.css";
 
-// rotating cube
-function Box(props) {
-  // This reference will give us direct access to the mesh
-  const mesh = useRef();
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
-  // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => (mesh.current.rotation.x += 0.01));
-  // Return view, these are regular three.js elements expressed in JSX
-  return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={active ? 1.5 : 1}
-      onClick={(event) => setActive(!active)}
-      onPointerOver={(event) => setHover(true)}
-      onPointerOut={(event) => setHover(false)}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-    </mesh>
-  );
-}
 // main scene
 class Space extends React.Component {
   render() {
     return (
-        <Canvas dpr={window.devicePixelRatio}>
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-          <Box position={[-1.2, 0, 0]} />
-          <Box position={[1.2, 0, 0]} />
-        </Canvas>
+      <Canvas
+        gl={{ alpha: false }}
+        camera={{ position: [0, 0, 10], fov: 45 }}
+        dpr={window.devicePixelRatio}
+      >
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} />
+        <Physics gravity={[0, -30, 0]}>
+          <Ground />
+          <RotatingCube position={[-1.2, 0, 0]} />
+          <RotatingCube position={[1.2, 0, 0]} />
+          <RotatingCube position={[0, 1, -1]} />
+        </Physics>
+      </Canvas>
     );
   }
 }
