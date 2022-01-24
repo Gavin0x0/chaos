@@ -1,54 +1,53 @@
 .App {
-    text-align: center;
-  }
-  
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #61dafb;
+}
+/*  取消下划线 */
+.guide-text {
+  font-size: 1.2rem;
+  font-weight: thin;
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.guide-text:hover {
+  color: #4ca8c2;
+  cursor: pointer;
+}
+
+/** logo旋转 */
+@media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+    animation: App-logo-spin infinite 20s linear;
   }
+}
 
-  .main-title{
-    font-size: 3rem;
-    font-weight: bolder;
-    color: #61dafb;
-  }
-  /*  取消下划线 */
-  .guide-text{
-    font-size: 1.2rem;
-    font-weight:thin;
-    color: #61dafb;
-    text-decoration: none;
-  }
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
-  .guide-text:hover{
-    color: #4ca8c2;
-    cursor: pointer;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  /** logo旋转 */
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
+  to {
+    transform: rotate(360deg);
   }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+}

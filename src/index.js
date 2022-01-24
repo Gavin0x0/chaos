@@ -9,6 +9,7 @@ import {
   Route
 } from "react-router-dom";
 import Game from "./routers/gamePage"
+import Space from "./routers/spacePage"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="game" element={<Game />} />
+      <Route path="space" element={<Space />} />
     </Routes>
   </BrowserRouter>
   </React.StrictMode>,
