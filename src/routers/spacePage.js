@@ -7,6 +7,20 @@ import { Ground } from "../components/Ground";
 import { Player } from "../components/Player";
 import { RotatingCube } from "../components/RotatingCube";
 
+function CubeList(props) {
+  const cubes = new Array(10).fill(0)
+  console.log(cubes)
+  const cubeList = cubes.map((cube, i) => {
+    return (
+      <RotatingCube
+        key={i}
+        position={[i,i,i]}
+      />
+    );
+  });
+  return cubeList;
+}
+
 class Space extends React.Component {
   render() {
     return (
@@ -27,9 +41,8 @@ class Space extends React.Component {
           <Physics gravity={[0, -30, 0]}>
             <Ground />
             <Player />
-            <RotatingCube position={[-1.2, 2, 0]} />
-            <RotatingCube position={[1.2, 2, 0]} />
-            <RotatingCube position={[0, 1, -1]} />
+            <RotatingCube position={[1,1,1]}/>
+            <CubeList />
           </Physics>
           <PointerLockControls selector="#PointerLockToggle" />
         </Canvas>
