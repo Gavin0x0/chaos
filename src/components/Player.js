@@ -6,13 +6,14 @@ import { useControls } from "leva";
 export const Player = () => {
   const { camera_pos } = useControls({
     camera_pos: {
-      x: 0,
-      z: 0,
+      value: { x: 0, y: 0},
+      step: 1,
     },
   });
   useFrame((state, delta) => {
-    state.camera.position.x = camera_pos.x;
-    state.camera.position.z = camera_pos.z;
+    //console.log(camera_pos)
+    state.camera.position.x = camera_pos.x.toFixed(0);
+    state.camera.position.z = camera_pos.y.toFixed(0);
   });
   return <></>;
 };
