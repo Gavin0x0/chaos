@@ -1,19 +1,49 @@
 import React from "react";
-import { useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
+import * as THREE from "three"
+import { useEffect, useRef, useState } from "react"
+import { useFrame,useThree } from "@react-three/fiber";
+import { useSphere } from "@react-three/cannon";
+//import { useControls } from "leva";
+
+const SPEED = 5
+const moveFieldByKey = (key) => keys[key]
+const direction = new THREE.Vector3()
+const frontVector = new THREE.Vector3()
+const sideVector = new THREE.Vector3()
+//const rotation = new THREE.Vector3()
+const speed = new THREE.Vector3()
+const keys = { KeyW: "forward", KeyS: "backward", KeyA: "left", KeyD: "right", Space: "jump" }
+
+const usePlayerControls = () => {
+  const [movement, setMovement] = useState({ forward: false, backward: false, left: false, right: false, jump: false })
+  useEffect(() => {
+    const handleKeyDown = (e) => setMovement((m) => ({ ...m, [moveFieldByKey(e.code)]: true }))
+    const handleKeyUp = (e) => setMovement((m) => ({ ...m, [moveFieldByKey(e.code)]: false }))
+    document.addEventListener("keydown", handleKeyDown)
+    document.addEventListener("keyup", handleKeyUp)
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
+      document.removeEventListener("keyup", handleKeyUp)
+    }
+  }, [])
+  return movement
+}
 
 // FPV camera controls
-export const Player = () => {
-  const { camera_pos } = useControls({
-    camera_pos: {
-      value: { x: 0, y: 0},
-      step: 1,
-    },
-  });
-  useFrame((state, delta) => {
-    //console.log(camera_pos)
-    state.camera.position.x = camera_pos.x.toFixed(0);
-    state.camera.position.z = camera_pos.y.toFixed(0);
-  });
-  return <></>;
+export const Player = (props) => {
+  const { camera } = useThree()
+  const velocity = useRef([0, 0, 0])
+  const { forward, backward, left, right, jump } = usePlayerControls()
+  const [playerRef, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], ...props }))
+  useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)), [api.velocity])
+  useFrame((state) => {
+    playerRef.current.getWorldPosition(camera.position)
+    frontVector.set(0, 0, Number(backward) - Number(forward))
+    sideVector.set(Number(left) - Number(right), 0, 0)
+    direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED).applyEuler(camera.rotation)
+    speed.fromArray(velocity.current)
+    api.velocity.set(direction.x, velocity.current[1], direction.z)
+    if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.05) api.velocity.set(velocity.current[0], 10, velocity.current[2])
+  })
+  return <><mesh ref={playerRef} /></>;
 };

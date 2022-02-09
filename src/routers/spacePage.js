@@ -8,13 +8,13 @@ import { Player } from "../components/Player";
 import { RotatingCube } from "../components/RotatingCube";
 
 function CubeList(props) {
-  const cubes = new Array(10).fill(0)
+  const cubes = new Array(30).fill(0)
   console.log(cubes)
   const cubeList = cubes.map((cube, i) => {
     return (
       <RotatingCube
         key={i}
-        position={[i,i,i]}
+        position={[-10,i,-10]}
       />
     );
   });
@@ -28,7 +28,7 @@ class Space extends React.Component {
         <div
           id="PointerLockToggle"
         >
-          Click here to control camera
+          Click here to control the camera
         </div>
         <Canvas
           gl={{ alpha: false }}
@@ -44,7 +44,7 @@ class Space extends React.Component {
             <RotatingCube position={[1,1,1]}/>
             <CubeList />
           </Physics>
-          <PointerLockControls selector="#PointerLockToggle" />
+          <PointerLockControls/>
         </Canvas>
       </>
     );

@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import Game from "./routers/gamePage"
 import Space from "./routers/spacePage"
+import Example from "./routers/examplePage"
+import Example1 from "./examples/example1"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +20,10 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="game" element={<Game />} />
       <Route path="space" element={<Space />} />
+      <Route path="examples" element={<Example />} >
+        <Route path="example1" element={<Example1 />} />
+      </Route>
+
     </Routes>
   </BrowserRouter>
   </React.StrictMode>,

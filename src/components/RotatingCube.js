@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
+import {useBox} from "@react-three/cannon";
 // rotating cube
 export const RotatingCube = (props) => {
   // This reference will give us direct access to the mesh
-  const mesh = useRef();
+  //const mesh = useRef(); //old
+  const [mesh] = useBox(() => ({ mass: 1, ...props }))
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
