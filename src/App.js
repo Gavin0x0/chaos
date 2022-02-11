@@ -13,7 +13,7 @@ function App() {
         </h1>
         <Link className='guide-text' to="/game">—— Click Here To Start ——</Link>
         <Link className='guide-text' to="/space">—— Click Here To Enter Space ——</Link>
-        <Link className='guide-text' to="/examples">—— Click Here To Enter Space ——</Link>
+        <Link className='guide-text' to="/examples">—— Click Here To Enter Examples ——</Link>
       </header>
     </div>
   );

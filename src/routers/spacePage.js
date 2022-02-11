@@ -5,14 +5,14 @@ import { Physics } from "@react-three/cannon";
 import { Sky, PointerLockControls } from "@react-three/drei";
 import { Ground } from "../components/Ground";
 import { Player } from "../components/Player";
-import { RotatingCube } from "../components/RotatingCube";
+import { PhysicalCube } from "../components/PhysicalCube";
 
 function CubeList(props) {
   const cubes = new Array(30).fill(0)
   console.log(cubes)
   const cubeList = cubes.map((cube, i) => {
     return (
-      <RotatingCube
+      <PhysicalCube
         key={i}
         position={[-10,i,-10]}
       />
@@ -41,7 +41,7 @@ class Space extends React.Component {
           <Physics gravity={[0, -30, 0]}>
             <Ground />
             <Player />
-            <RotatingCube position={[1,1,1]}/>
+            <PhysicalCube position={[1,1,1]}/>
             <CubeList />
           </Physics>
           <PointerLockControls/>

@@ -12,6 +12,10 @@ import Game from "./routers/gamePage"
 import Space from "./routers/spacePage"
 import Example from "./routers/examplePage"
 import Example1 from "./examples/example1"
+import Example2 from "./examples/example2"
+import Example3 from "./examples/example3"
+import Example4 from "./examples/example4"
+import Example5 from "./examples/example5"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,6 +26,10 @@ ReactDOM.render(
       <Route path="space" element={<Space />} />
       <Route path="examples" element={<Example />} >
         <Route path="example1" element={<Example1 />} />
+        <Route path="example2" element={<Space />} />
+        <Route path="example3" element={<Example3 />} />
+        <Route path="example4" element={<Example4 />} />
+        <Route path="example5" element={<Example5 />} />
       </Route>
 
     </Routes>
