@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {useBox} from "@react-three/cannon";
 // rotating cube
 export const PhysicalCube = (props) => {
