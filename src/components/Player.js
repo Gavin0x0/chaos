@@ -6,13 +6,15 @@ import { useSphere } from "@react-three/cannon";
 import { useControls, folder } from "leva";
 
 // FPC First Person Controller 第一人称控制器的实现
-const SPEED = 5
-const direction = new THREE.Vector3()
-const frontVector = new THREE.Vector3()
-const sideVector = new THREE.Vector3()
+
+const SPEED = 5 // 固定世界速度
+const JUMP_SPEED = 10 // 跳跃时初始速度
+const direction = new THREE.Vector3() //运动方向「正向速度与横向速度的复合」
+const frontVector = new THREE.Vector3() //正向速度
+const sideVector = new THREE.Vector3() //横向速度
 //const rotation = new THREE.Vector3()
 const speed = new THREE.Vector3()
-// 按键绑定
+// 按键绑定，按键按下时将对应的值设为 true
 const keys = { KeyW: "forward", KeyS: "backward", KeyA: "left", KeyD: "right", Space: "jump" }
 const moveFieldByKey = (key) => keys[key]
 const usePlayerControls = () => {
@@ -47,7 +49,7 @@ export const Player = (props) => {
    * 就是说，物理引擎中发生的数值变化会通过 api 接口给到我们，在 useEffect 中订阅这个属性来获得每帧的更新
    * 当 api.velocity 发生变化时，useEffect 函数会激活，我们就会更新我们的 velocity 变量
    */
-  const [playerRef, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], ...props }))
+  const [playerRef, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 0, 0], ...props }))
   useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)), [api.velocity])
   /**
    * 在 useFrame 通过 playerRef「球形对象」 的位置属性来更新 camera 的位置
@@ -55,8 +57,6 @@ export const Player = (props) => {
   useFrame((state) => {
     //current.getWorldPosition - 获取当前对象的世界坐标 <THREE.Object3D>
     playerRef.current.getWorldPosition(camera.position)
-    // 同步观察者数据「位置」
-    set_watcher({ pos_watcher: camera.position.toArray() })
     // Z轴速度变量：后-前
     frontVector.set(0, 0, Number(backward) - Number(forward))
     // X轴速度变量：左-右
@@ -71,9 +71,10 @@ export const Player = (props) => {
     // 速度参数，暂时不用管
     speed.fromArray(velocity.current)
     api.velocity.set(direction.x, velocity.current[1], direction.z)
-    // 同步观察者数据「欧拉旋转后的速度」& 「控制器」
-    set_watcher({ vel_watcher: [direction.x, velocity.current[1], direction.z], forward: forward, backward: backward, left: left, right: right, jump: jump })
-    if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.05) api.velocity.set(velocity.current[0], 10, velocity.current[2])
+    // 同步观察者数据「欧拉旋转后的速度」& 「位置」&「控制器」
+    set_watcher({ vel_watcher: [direction.x, velocity.current[1], direction.z], pos_watcher: camera.position.toArray(), forward: forward, backward: backward, left: left, right: right, jump: jump })
+    // 跳跃控制器：当 jump 为 true 且下落速度小于0.05即在地面时允许跳跃
+    if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.05) api.velocity.set(velocity.current[0], JUMP_SPEED, velocity.current[2])
   })
   return <><mesh ref={playerRef} /></>;
 };
