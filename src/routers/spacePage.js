@@ -2,10 +2,10 @@ import React from "react";
 import "../css/spacePage.css";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
-import { Sky, PointerLockControls } from "@react-three/drei";
 import { Ground } from "../components/Ground";
 import { Player } from "../components/Player";
 import { PhysicalCube } from "../components/PhysicalCube";
+import { Sky, PointerLockControls } from "@react-three/drei";
 
 function CubeList(props) {
   const cubes = new Array(30).fill(0)

@@ -26,7 +26,7 @@ ReactDOM.render(
       <Route path="space" element={<Space />} />
       <Route path="examples" element={<Example />} >
         <Route path="example1" element={<Example1 />} />
-        <Route path="example2" element={<Space />} />
+        <Route path="example2" element={<Example2 />} />
         <Route path="example3" element={<Example3 />} />
         <Route path="example4" element={<Example4 />} />
         <Route path="example5" element={<Example5 />} />
