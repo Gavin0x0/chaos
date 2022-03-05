@@ -5,7 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useSphere } from "@react-three/cannon";
 import { useControls, folder } from "leva";
 
-// FPC First Person Controller 第一人称控制器的实现
+// FPVC First Person View Controller 第一人称控制器的实现
 
 const SPEED = 5 // 固定世界速度
 const JUMP_SPEED = 10 // 跳跃时初始速度
@@ -38,7 +38,7 @@ const usePlayerControls = () => {
 export const Player = (props) => {
   // 定义摄像机
   const { camera } = useThree()
-  // 定义速度参数
+  // 定义速度参数，使用Ref的好处是改变.current的值不会触发重新渲染
   const velocity = useRef([0, 0, 0])
   // 定义运动控制器
   const { forward, backward, left, right, jump } = usePlayerControls()
