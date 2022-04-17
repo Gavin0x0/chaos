@@ -35,6 +35,9 @@ class Example3 extends React.Component {
           gl={{ alpha: false }}
           camera={{ position: [0, 10, 10] }}
           dpr={window.devicePixelRatio}
+          raycaster={{
+            computeOffsets: (e) => ({ offsetX: e.target.width / 2, offsetY: e.target.height / 2 }),
+          }}
         >
           <Sky sunPosition={[100, 20, 100]} />
           <ambientLight />

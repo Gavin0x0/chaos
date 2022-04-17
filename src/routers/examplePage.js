@@ -2,7 +2,7 @@ import React from "react"
 import { Link, Outlet } from "react-router-dom";
 import "../css/examplesPage.css"
 function ExamplesList(props) {
-    const examples = new Array(5).fill(0)
+    const examples = new Array(8).fill(0)
     console.log(examples)
     const examplesList = examples.map((cube, i) => {
         return (

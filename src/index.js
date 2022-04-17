@@ -16,6 +16,8 @@ import Example2 from "./examples/example2"
 import Example3 from "./examples/example3"
 import Example4 from "./examples/example4"
 import Example5 from "./examples/example5"
+import Example6 from "./examples/example6"
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,8 +32,8 @@ ReactDOM.render(
         <Route path="example3" element={<Example3 />} />
         <Route path="example4" element={<Example4 />} />
         <Route path="example5" element={<Example5 />} />
+        <Route path="example6" element={<Example6 />} />
       </Route>
-
     </Routes>
   </BrowserRouter>
   </React.StrictMode>,
