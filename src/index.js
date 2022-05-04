@@ -1,43 +1,43 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './styles/index.css';
+import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
-import Game from "./routers/gamePage"
-import Space from "./routers/spacePage"
-import Example from "./routers/examplePage"
-import Example1 from "./examples/example1"
-import Example2 from "./examples/example2"
-import Example3 from "./examples/example3"
-import Example4 from "./examples/example4"
-import Example5 from "./examples/example5"
-import Example6 from "./examples/example6"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './pages/App';
+import HomePage from './pages/HomePage';
+import NFTsPage from './pages/NFTsPage';
+import RigControlsPage from './pages/RigControlsPage';
+import FPVControlsPage from './pages/FPVControlsPage';
+import GalleryImagePage from './pages/GalleryImagePage';
+import DBTestPage from './pages/DBTestPage';
+import CryptoLogin from './pages/CryptoLoginPage';
+import GalleryByAccount from './pages/GalleryByAccount';
+import SharePage from './pages/SharePage';
+import RandomTourPage from './pages/RandomTourPage';
 
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="game" element={<Game />} />
-      <Route path="space" element={<Space />} />
-      <Route path="examples" element={<Example />} >
-        <Route path="example1" element={<Example1 />} />
-        <Route path="example2" element={<Example2 />} />
-        <Route path="example3" element={<Example3 />} />
-        <Route path="example4" element={<Example4 />} />
-        <Route path="example5" element={<Example5 />} />
-        <Route path="example6" element={<Example6 />} />
-      </Route>
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/nft" element={<NFTsPage />} />
+      <Route path="/rig" element={<RigControlsPage />} />
+      <Route path="/fpv" element={<FPVControlsPage />} />
+      <Route path="/gallery" element={<GalleryImagePage />} />
+      <Route path="/galleryByAccount" element={<GalleryByAccount />} />
+      <Route path="/dbtest" element={<DBTestPage />} />
+      <Route path="/login" element={<CryptoLogin />} />
+      <Route path="/share" element={<SharePage />} />
+      <Route path="/random" element={<RandomTourPage />} />
     </Routes>
   </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
