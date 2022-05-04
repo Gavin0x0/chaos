@@ -34,7 +34,7 @@ function RigControls() {
     const [vec] = useState(() => new THREE.Vector3())
     const { camera, mouse } = useThree()
     //position.lerp: 位置逐帧变化，带插值
-    useFrame(() => camera.position.lerp(vec.set(mouse.x * 20, 5, mouse.y * -20 + 10), 0.05))
+    useFrame(() => camera.position.lerp(vec.set(mouse.x * 20, 5, mouse.y * -20 + 10), 1))
     //让相机始终看向中间
     useFrame(() => camera.lookAt(vec.set(0, 3, 0)))
     return <CameraShake maxYaw={0.01} maxPitch={0.01} maxRoll={0.01} yawFrequency={0.5} pitchFrequency={0.5} rollFrequency={0.4} />
