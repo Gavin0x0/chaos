@@ -1,0 +1,7 @@
+{
+  "less.compile": {
+    "compress": true,
+    "sourceMap": true,
+    "out": "../src/styles/"
+  }
+}

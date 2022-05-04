@@ -1,0 +1,39 @@
+.canvas-container {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+//屏幕中心的光标
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; //禁止光标事件
+}
+.cursor::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  backdrop-filter: invert(100%); //反转色光标
+  -webkit-backdrop-filter: invert(100%); //反转色光标
+  z-index: 999;
+  pointer-events: none; //禁止光标事件
+}
+.cursor::before {
+  content: "按「Esc」可退出FPV";
+  color: #fff;
+  z-index: 999;
+  pointer-events: none; //禁止光标事件
+  position: fixed;
+  top: 0;
+  left: 10px;
+}
